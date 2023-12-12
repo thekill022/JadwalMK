@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jadwal Mata Kuliah</title>
+  <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    ul.list-disc {
+    margin-left: 0;
+  }
+  
+  ul.list-disc li {
+    padding: 0 1rem;
+  }
+  .bg {
+    background-color: aquamarine;
+  }
+  </style>
+</head>
+<body>
+  <div class="container mx-auto">
+    <h1 class="text-center text-2xl mb-4">Jadwal Mata Kuliah</h1>
+    <div class="flex flex-col mb-4">
+      <label class="text-lg mb-2">Pilih Hari</label>
+      <select class=" bg form-control w-full" id="hari">
+        <option value=""></option>
+        <option value="senin">Senin</option>
+        <option value="selasa">Selasa</option>
+        <option value="rabu">Rabu</option>
+        <option value="kamis">Kamis</option>
+      </select>
+    </div>
+    <div class="flex flex-col mb-4">
+      <label class="text-lg mb-2">Mata Kuliah</label>
+      <ul id="matakuliah" class="list-disc">
+        
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    var data = {
+  "senin": [`<b>*_Mata Kuliah Hari Senin_*</b></br></br><b><i>*1. Bahasa Inggris dasar*</b></i></br></br>Lokasi : Lab B</br>Waktu : 08.50 - 10.30 WIB</br></br><b><i>*2. Fisika & Elektronika Dasar*</b></i></br></br>Lokasi : Lab E</br>Waktu : 13.20 - 15.00 WIB</p>`],
+  "selasa": [`<p class="warna"><b>*_Mata Kuliah Hari Selasa_*</b></br></br><b><i>*1. Perancangan Basis Data*</b></i></br></br>Lokasi : Lab G</br>Waktu : 09.40 - 11.30 WIB</br></br><b><i>*2. Rekayasa Kebutuhan*</b></i></br></br>Lokasi : Lab A</br>Waktu : 13.20 - 16.20</p>`],
+  "rabu": [`<p class='warna'><b>*_Mata Kuliah Hari Rabu_*</b></br></br><b><i>*1. Matematika Teknologi Informasi*</b></i></br></br>Lokasi : Lab D</br>Waktu : 08.50 - 11.30</br></br><b><i>*2. Al Islam & Kemuhammadiyahan*</b></i></br></br>Lokasi : Ruang Sidang LPPI Majid UMY Lantai Akhwat</br>Waktu : 15.30 - Selesai</p>`],
+  "kamis": [`<p class='warna'><b>*_Mata Kuliah Hari Kamis_*</b></br></br>
+
+<b><i>*1. Dasar Teknologi Informasi*</i></b></br></br>
+
+  Lokasi : Lab D</br>
+  Waktu : 07.00 - 09.40 WIB</br></br>
+            
+<b><i>*2. Pancasila*</i></b></br></br>
+            
+  Lokasi : Lab E</br>
+  Waktu : 12.30 - 14.10</br></br>
+            
+<b><i>*3. Logika Teknik Pemrograman*</i></b></br></br>
+            
+  Lokasi : Fakultas (Pitstop)</br>
+  Waktu : 16.30 - 18.00</p>`],
+};
+
+    $(document).ready(function() {
+      // Menangani perubahan pilihan hari
+      $("#hari").on("change", function() {
+        var hari = $(this).val();
+        // Menampilkan data mata kuliah
+        $("#matakuliah").html("");
+        for (var i = 0; i < data[hari].length; i++) {
+          $("#matakuliah").append("<li class=\"text-lg\">" + data[hari][i] + "</li>");
+        }
+      });
+
+      // Menambahkan media query untuk menyesuaikan tampilan dengan smartphone
+      if (window.innerWidth < 768) {
+        // Menyembunyikan label "Pilih Hari"
+        $("#hari").hide();
+        // Menambahkan label "Hari" ke setiap item di ul "matakuliah"
+        $("#matakuliah li").each(function() {
+          $(this).prepend("<span class=\"text-xs\">Hari: </span>");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
